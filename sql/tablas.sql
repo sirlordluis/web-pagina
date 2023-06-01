@@ -1,0 +1,107 @@
+CREATE TABLE departamento (
+  id INT(1) NOT NULL PRIMARY KEY,
+  nombre TEXT NOT NULL
+);
+
+CREATE TABLE clase(
+  id INT(6) NOT NULL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  numero INT(2) NOT NULL,
+  fk_departamento INT(1) NOT NULL,
+  FOREIGN KEY (fk_departamento) REFERENCES departamento (id)
+);
+
+CREATE TABLE familia (
+  id INT(6) NOT NULL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  numero INT(3) NOT NULL,
+  fk_clase INT(2) NOT NULL,
+  FOREIGN KEY (fk_clase) REFERENCES clase (id)
+);
+
+
+CREATE TABLE articulos (
+  sku int(6) NOT NULL,
+  articulo text NOT NULL,
+  marca text NOT NULL,
+  modelo text NOT NULL,
+  fk_departamento int(1) NOT NULL,
+  fechaAlta date NOT NULL,
+  stock int(9) NOT NULL,
+  cantidad int(9) NOT NULL,
+  descontinuado int(1) NOT NULL,
+  fechaBaja date NOT NULL,
+  fk_clase int(2) NOT NULL,
+  fk_familia int(3) NOT NULL,
+  borrado int(1) NOT NULL
+);
+
+
+INSERT INTO `departamento` (`id`, `nombre`) VALUES
+(1, 'DOMESTICO'),
+(2, 'ELECTRONICA'),
+(3, 'MUEBLE SUELTO'),
+(4, 'SALAS, RECAMARAS, COMEDORES');
+
+INSERT INTO `clase` (`id`, `nombre`, `fk_departamento`, `numero`) VALUES
+/*DOMESTICO*/
+(1, 'COMESTIBLES', 1,1),
+(2, 'LICUADORAS', 1,2),
+(3, 'BATIDORAS', 1,3),
+(4, 'CAFETERAS', 1,4),
+/*ELECTRONICA*/
+(5, 'AMPLIFICADORES CAR AUDIO', 2,1),
+(6, 'AUTO ESTEREOS', 2,2),
+/*MUEBLE SUELTO*/
+(7, 'COLCHON', 3,1),
+(8, 'JUEGO BOX', 3,2),
+/*SALAS, RECAMARAS, COMEDORES*/
+(9, 'SALAS', 4,1),
+(10, 'COMPLEMENTOS PARA SALA', 4,2),
+(11, 'SOFAS CAMA', 4,3);
+
+
+INSERT INTO `familia` (`id`, `nombre`, `fk_clase`, `numero`) VALUES
+/*DOMESTICOS*/
+(1, 'SIN NOMBRE', 1,0),
+(2, 'LICUADORA', 2,1),
+(3, 'EXCLUSIVO COOPEL', 2,2),
+(4, 'BATIDORA MANUAL', 3,1),
+(5, 'PROCESADOR', 3,2),
+(6, 'PICADORA', 3,3),
+(7, 'BATIDORA PEDESTAL', 3,4),
+(8, 'BATIDORA FUENTE DE SODAS', 3,5),
+(9, 'MULTPRACTICOS', 3,6),
+(10, 'EXCLUSIVO COOPEL', 3,7),
+(11, 'CAFETERAS', 4,1),
+(12, 'PERCOLADORAS', 4,2),
+/*ELECTRONICOS-*/
+(13, 'AMPLIFICADOR/RECEPTOR', 5,1),
+(14, 'KIT DE INSTALACION', 5,2),
+(15, 'AMPLIFICADORES COPPEL', 5,3),
+(16, 'AUTOESTEREO CD C/BOO', 6,1),
+(17, 'ACCESORIOS CAR AUDIO', 6,2),
+(18, 'AMPLIFICADORES', 6,3),
+(19, 'ALARMA AUTO/CASA/OFICINA', 6,4),
+(20, 'SIN MECANISMO', 6,5),
+(21, 'CON CD', 6,6),
+(22, 'MULTIMEDIA', 6,7),
+(23, 'PAQUETE SIN MECANISMO', 6,8),
+(24, 'PAQUETE CON CD', 6,9),
+/*MUEBLE SUELTO*/
+(25, 'PILLOW TOP KS', 7,1),
+(26, 'PILLOW TOP DOBLE KS', 7,2),
+(27, 'HULE ESPUMA KS', 7,3),
+(28, 'ESTANDAR INDIVIDUAL', 8,1),
+(29, 'PILLOW TOP INDIVIDUAL', 8,2),
+(30, 'PILLOW TOP DOBLE INDIVIDUAL', 8,3),
+/*SALAS, RECAMARAS, COMEDORES*/
+(31, 'ESQUINERAS SUPERIORES', 9,1),
+(32, 'TIPO L SECCIONAL', 9,2),
+(33, 'SILLON OCACIONAL', 10,1),
+(34, 'PUFF', 10,1),
+(35, 'BAUL', 10,2),
+(36, 'TABURETE', 10,3),
+(37, 'SOFA CAMA TAPIZADO', 11,1),
+(38, 'SOFACAMA CLASICO', 11,2),
+(39, 'ESTUDIO', 11,3);
